@@ -1,15 +1,15 @@
 [*]
 [*] GTKWave Analyzer v3.3.104 (w)1999-2020 BSI
-[*] Thu Jul 10 01:07:35 2025
+[*] Thu Jul 10 01:30:58 2025
 [*]
 [dumpfile] "/home/ral298/ttsky-verilog-template/test/tb.vcd"
-[dumpfile_mtime] "Thu Jul 10 00:48:07 2025"
-[dumpfile_size] 356863460
+[dumpfile_mtime] "Thu Jul 10 01:29:02 2025"
+[dumpfile_size] 5243769987
 [savefile] "/home/ral298/ttsky-verilog-template/test/tb.gtkw"
-[timestart] 18218030000
-[size] 1850 1016
-[pos] -151 -151
-*-23.555412 26704032000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[timestart] 0
+[size] 1920 1043
+[pos] -1 -1
+*-35.893047 13360032000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] tb.
 [sst_width] 297
 [signals_width] 230
@@ -43,7 +43,7 @@ tb.user_project.uio_out[7:0]
 -
 -
 -
-@22
+@24
 tb.user_project.I[4:0]
 @28
 tb.user_project.select[2:0]

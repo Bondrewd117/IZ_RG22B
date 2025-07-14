@@ -1,6 +1,9 @@
 <testsuites name="results">
   <testsuite name="all" package="all">
-    <property name="random_seed" value="1752108377" />
-    <testcase name="test_project" classname="test" file="/home/ral298/ttsky-verilog-template/test/test.py" lineno="9" time="109.83044838905334" sim_time_ns="40080160.001" ratio_time="364927.58236790315" />
+    <property name="random_seed" value="1752161524" />
+    <testcase name="test_project_0d" classname="test" file="/home/ral298/ttsky-verilog-template/test/test.py" lineno="9" time="307.59514117240906" sim_time_ns="106880480.001" ratio_time="347471.28837478225" />
+    <testcase name="test_project_8d" classname="test" file="/home/ral298/ttsky-verilog-template/test/test.py" lineno="100" time="306.1866819858551" sim_time_ns="106880512.001" ratio_time="349069.7613227265" />
+    <testcase name="test_project_16d" classname="test" file="/home/ral298/ttsky-verilog-template/test/test.py" lineno="191" time="311.3627760410309" sim_time_ns="106880512.00100002" ratio_time="343266.82643308485" />
+    <testcase name="test_project_24d" classname="test" file="/home/ral298/ttsky-verilog-template/test/test.py" lineno="282" time="314.3032238483429" sim_time_ns="106880512.00099999" ratio_time="340055.41111653316" />
   </testsuite>
 </testsuites>
