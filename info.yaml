@@ -1,7 +1,7 @@
 # Tiny Tapeout project information
 project:
   title:        "IZ_RG_22"      # Project title
-  author:       "Torres Chavez, Juarez Lora, Perez Nuñez"      # Your name
+  author:       "Torres"      # Your name
   discord:      "bondrewd117"      # Your discord username, for communication and automatically assigning you a Tapeout role (optional)
   description:  "Modified Izhikevich Equation Implemented in 22-Bit for Capturing All Original Izhikevich Behaviors"      # One line description of what your project does
   language:     "Verilog" # other examples include SystemVerilog, Amaranth, VHDL, etc
