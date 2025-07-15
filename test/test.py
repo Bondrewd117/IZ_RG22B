@@ -22,11 +22,11 @@ async def test_project_0d(dut):
     dut.rst_n.value = 1
     
 
-    for sub_i_I_cor in range(8):
+    for sub_i_I_cor in range(4):
         i_I_cor=sub_i_I_cor+0
         I_cor = f'{i_I_cor:05b}'
         # print(f'{i_I_cor} -> {I_cor}')
-
+        
         select="000"
         
         
@@ -37,7 +37,7 @@ async def test_project_0d(dut):
         await ClockCycles(dut.clk, 2)
         dut.rst_n.value = 0
         dut._log.info("Test project behavior")
-        await ClockCycles(dut.clk, int(100000/clk_r))
+        await ClockCycles(dut.clk, int(61000/clk_r))
         
         dut.rst_n.value = 1
         select="001"
@@ -45,7 +45,7 @@ async def test_project_0d(dut):
         dut.ui_in.value = ui_valor
         await ClockCycles(dut.clk, int(1600/clk_r))
         dut.rst_n.value = 0
-        await ClockCycles(dut.clk, int(100000/clk_r))
+        await ClockCycles(dut.clk, int(61000/clk_r))
         
         dut.rst_n.value = 1
         select="010"
@@ -54,7 +54,7 @@ async def test_project_0d(dut):
         await ClockCycles(dut.clk, int(1600/clk_r))
         dut.rst_n.value = 0
         # Set the input values you want to test
-        await ClockCycles(dut.clk, int(100000/clk_r))
+        await ClockCycles(dut.clk, int(61000/clk_r))
         
         dut.rst_n.value = 1
         select="011"
@@ -62,7 +62,7 @@ async def test_project_0d(dut):
         dut.ui_in.value = ui_valor
         await ClockCycles(dut.clk, int(1600/clk_r))
         dut.rst_n.value = 0
-        await ClockCycles(dut.clk, int(100000/clk_r))
+        await ClockCycles(dut.clk, int(61000/clk_r))
         
         dut.rst_n.value = 1
         select="100"
@@ -70,7 +70,7 @@ async def test_project_0d(dut):
         dut.ui_in.value = ui_valor
         await ClockCycles(dut.clk, int(1600/clk_r))
         dut.rst_n.value = 0    
-        await ClockCycles(dut.clk, int(100000/clk_r))
+        await ClockCycles(dut.clk, int(61000/clk_r))
         
         dut.rst_n.value = 1
         select="101"
@@ -78,7 +78,7 @@ async def test_project_0d(dut):
         dut.ui_in.value = ui_valor
         await ClockCycles(dut.clk, int(1600/clk_r))
         dut.rst_n.value = 0
-        await ClockCycles(dut.clk, int(100000/clk_r))
+        await ClockCycles(dut.clk, int(61000/clk_r))
         
         dut.rst_n.value = 1
         select="110"
@@ -86,7 +86,7 @@ async def test_project_0d(dut):
         dut.ui_in.value = ui_valor
         await ClockCycles(dut.clk, int(1600/clk_r))
         dut.rst_n.value = 0
-        await ClockCycles(dut.clk, int(100000/clk_r))
+        await ClockCycles(dut.clk, int(61000/clk_r))
         
         dut.rst_n.value = 1
         select="111"
@@ -94,7 +94,7 @@ async def test_project_0d(dut):
         dut.ui_in.value = ui_valor
         await ClockCycles(dut.clk, int(1600/clk_r))
         dut.rst_n.value = 0
-        await ClockCycles(dut.clk, int(100000/clk_r))
+        await ClockCycles(dut.clk, int(61000/clk_r))
         dut.rst_n.value = 1
 
 @cocotb.test()
@@ -113,8 +113,8 @@ async def test_project_8d(dut):
     dut.rst_n.value = 1
     
 
-    for sub_i_I_cor in range(8):
-        i_I_cor=sub_i_I_cor+8
+    for sub_i_I_cor in range(2):
+        i_I_cor=sub_i_I_cor+12
         I_cor = f'{i_I_cor:05b}'
         # print(f'{i_I_cor} -> {I_cor}')
 
@@ -128,7 +128,7 @@ async def test_project_8d(dut):
         await ClockCycles(dut.clk, 2)
         dut.rst_n.value = 0
         dut._log.info("Test project behavior")
-        await ClockCycles(dut.clk, int(100000/clk_r))
+        await ClockCycles(dut.clk, int(61000/clk_r))
         
         dut.rst_n.value = 1
         select="001"
@@ -136,7 +136,7 @@ async def test_project_8d(dut):
         dut.ui_in.value = ui_valor
         await ClockCycles(dut.clk, int(1600/clk_r))
         dut.rst_n.value = 0
-        await ClockCycles(dut.clk, int(100000/clk_r))
+        await ClockCycles(dut.clk, int(61000/clk_r))
         
         dut.rst_n.value = 1
         select="010"
@@ -145,7 +145,7 @@ async def test_project_8d(dut):
         await ClockCycles(dut.clk, int(1600/clk_r))
         dut.rst_n.value = 0
         # Set the input values you want to test
-        await ClockCycles(dut.clk, int(100000/clk_r))
+        await ClockCycles(dut.clk, int(61000/clk_r))
         
         dut.rst_n.value = 1
         select="011"
@@ -153,7 +153,7 @@ async def test_project_8d(dut):
         dut.ui_in.value = ui_valor
         await ClockCycles(dut.clk, int(1600/clk_r))
         dut.rst_n.value = 0
-        await ClockCycles(dut.clk, int(100000/clk_r))
+        await ClockCycles(dut.clk, int(5000/clk_r))
         
         dut.rst_n.value = 1
         select="100"
@@ -161,7 +161,7 @@ async def test_project_8d(dut):
         dut.ui_in.value = ui_valor
         await ClockCycles(dut.clk, int(1600/clk_r))
         dut.rst_n.value = 0    
-        await ClockCycles(dut.clk, int(100000/clk_r))
+        await ClockCycles(dut.clk, int(5000/clk_r))
         
         dut.rst_n.value = 1
         select="101"
@@ -169,7 +169,7 @@ async def test_project_8d(dut):
         dut.ui_in.value = ui_valor
         await ClockCycles(dut.clk, int(1600/clk_r))
         dut.rst_n.value = 0
-        await ClockCycles(dut.clk, int(100000/clk_r))
+        await ClockCycles(dut.clk, int(5000/clk_r))
         
         dut.rst_n.value = 1
         select="110"
@@ -177,7 +177,7 @@ async def test_project_8d(dut):
         dut.ui_in.value = ui_valor
         await ClockCycles(dut.clk, int(1600/clk_r))
         dut.rst_n.value = 0
-        await ClockCycles(dut.clk, int(100000/clk_r))
+        await ClockCycles(dut.clk, int(5000/clk_r))
         
         dut.rst_n.value = 1
         select="111"
@@ -185,7 +185,7 @@ async def test_project_8d(dut):
         dut.ui_in.value = ui_valor
         await ClockCycles(dut.clk, int(1600/clk_r))
         dut.rst_n.value = 0
-        await ClockCycles(dut.clk, int(100000/clk_r))
+        await ClockCycles(dut.clk, int(5000/clk_r))
         dut.rst_n.value = 1
 
 
@@ -205,8 +205,8 @@ async def test_project_16d(dut):
     dut.rst_n.value = 1
     
 
-    for sub_i_I_cor in range(8):
-        i_I_cor=sub_i_I_cor+16
+    for sub_i_I_cor in range(2):
+        i_I_cor=sub_i_I_cor+20
         I_cor = f'{i_I_cor:05b}'
         # print(f'{i_I_cor} -> {I_cor}')
 
@@ -220,7 +220,7 @@ async def test_project_16d(dut):
         await ClockCycles(dut.clk, 2)
         dut.rst_n.value = 0
         dut._log.info("Test project behavior")
-        await ClockCycles(dut.clk, int(100000/clk_r))
+        await ClockCycles(dut.clk, int(61000/clk_r))
         
         dut.rst_n.value = 1
         select="001"
@@ -228,7 +228,7 @@ async def test_project_16d(dut):
         dut.ui_in.value = ui_valor
         await ClockCycles(dut.clk, int(1600/clk_r))
         dut.rst_n.value = 0
-        await ClockCycles(dut.clk, int(100000/clk_r))
+        await ClockCycles(dut.clk, int(61000/clk_r))
         
         dut.rst_n.value = 1
         select="010"
@@ -237,7 +237,7 @@ async def test_project_16d(dut):
         await ClockCycles(dut.clk, int(1600/clk_r))
         dut.rst_n.value = 0
         # Set the input values you want to test
-        await ClockCycles(dut.clk, int(100000/clk_r))
+        await ClockCycles(dut.clk, int(61000/clk_r))
         
         dut.rst_n.value = 1
         select="011"
@@ -245,7 +245,7 @@ async def test_project_16d(dut):
         dut.ui_in.value = ui_valor
         await ClockCycles(dut.clk, int(1600/clk_r))
         dut.rst_n.value = 0
-        await ClockCycles(dut.clk, int(100000/clk_r))
+        await ClockCycles(dut.clk, int(5000/clk_r))
         
         dut.rst_n.value = 1
         select="100"
@@ -253,7 +253,7 @@ async def test_project_16d(dut):
         dut.ui_in.value = ui_valor
         await ClockCycles(dut.clk, int(1600/clk_r))
         dut.rst_n.value = 0    
-        await ClockCycles(dut.clk, int(100000/clk_r))
+        await ClockCycles(dut.clk, int(5000/clk_r))
         
         dut.rst_n.value = 1
         select="101"
@@ -261,7 +261,7 @@ async def test_project_16d(dut):
         dut.ui_in.value = ui_valor
         await ClockCycles(dut.clk, int(1600/clk_r))
         dut.rst_n.value = 0
-        await ClockCycles(dut.clk, int(100000/clk_r))
+        await ClockCycles(dut.clk, int(5000/clk_r))
         
         dut.rst_n.value = 1
         select="110"
@@ -269,7 +269,7 @@ async def test_project_16d(dut):
         dut.ui_in.value = ui_valor
         await ClockCycles(dut.clk, int(1600/clk_r))
         dut.rst_n.value = 0
-        await ClockCycles(dut.clk, int(100000/clk_r))
+        await ClockCycles(dut.clk, int(5000/clk_r))
         
         dut.rst_n.value = 1
         select="111"
@@ -277,7 +277,7 @@ async def test_project_16d(dut):
         dut.ui_in.value = ui_valor
         await ClockCycles(dut.clk, int(1600/clk_r))
         dut.rst_n.value = 0
-        await ClockCycles(dut.clk, int(100000/clk_r))
+        await ClockCycles(dut.clk, int(5000/clk_r))
         dut.rst_n.value = 1
 
 @cocotb.test()
@@ -296,8 +296,8 @@ async def test_project_24d(dut):
     dut.rst_n.value = 1
     
 
-    for sub_i_I_cor in range(8):
-        i_I_cor=sub_i_I_cor+24
+    for sub_i_I_cor in range(4):
+        i_I_cor=sub_i_I_cor+27
         I_cor = f'{i_I_cor:05b}'
         # print(f'{i_I_cor} -> {I_cor}')
 
@@ -311,7 +311,7 @@ async def test_project_24d(dut):
         await ClockCycles(dut.clk, 2)
         dut.rst_n.value = 0
         dut._log.info("Test project behavior")
-        await ClockCycles(dut.clk, int(100000/clk_r))
+        await ClockCycles(dut.clk, int(61000/clk_r))
         
         dut.rst_n.value = 1
         select="001"
@@ -319,7 +319,7 @@ async def test_project_24d(dut):
         dut.ui_in.value = ui_valor
         await ClockCycles(dut.clk, int(1600/clk_r))
         dut.rst_n.value = 0
-        await ClockCycles(dut.clk, int(100000/clk_r))
+        await ClockCycles(dut.clk, int(61000/clk_r))
         
         dut.rst_n.value = 1
         select="010"
@@ -328,7 +328,7 @@ async def test_project_24d(dut):
         await ClockCycles(dut.clk, int(1600/clk_r))
         dut.rst_n.value = 0
         # Set the input values you want to test
-        await ClockCycles(dut.clk, int(100000/clk_r))
+        await ClockCycles(dut.clk, int(61000/clk_r))
         
         dut.rst_n.value = 1
         select="011"
@@ -336,7 +336,7 @@ async def test_project_24d(dut):
         dut.ui_in.value = ui_valor
         await ClockCycles(dut.clk, int(1600/clk_r))
         dut.rst_n.value = 0
-        await ClockCycles(dut.clk, int(100000/clk_r))
+        await ClockCycles(dut.clk, int(5000/clk_r))
         
         dut.rst_n.value = 1
         select="100"
@@ -344,7 +344,7 @@ async def test_project_24d(dut):
         dut.ui_in.value = ui_valor
         await ClockCycles(dut.clk, int(1600/clk_r))
         dut.rst_n.value = 0    
-        await ClockCycles(dut.clk, int(100000/clk_r))
+        await ClockCycles(dut.clk, int(5000/clk_r))
         
         dut.rst_n.value = 1
         select="101"
@@ -352,7 +352,7 @@ async def test_project_24d(dut):
         dut.ui_in.value = ui_valor
         await ClockCycles(dut.clk, int(1600/clk_r))
         dut.rst_n.value = 0
-        await ClockCycles(dut.clk, int(100000/clk_r))
+        await ClockCycles(dut.clk, int(5000/clk_r))
         
         dut.rst_n.value = 1
         select="110"
@@ -360,7 +360,7 @@ async def test_project_24d(dut):
         dut.ui_in.value = ui_valor
         await ClockCycles(dut.clk, int(1600/clk_r))
         dut.rst_n.value = 0
-        await ClockCycles(dut.clk, int(100000/clk_r))
+        await ClockCycles(dut.clk, int(5000/clk_r))
         
         dut.rst_n.value = 1
         select="111"
@@ -368,5 +368,5 @@ async def test_project_24d(dut):
         dut.ui_in.value = ui_valor
         await ClockCycles(dut.clk, int(1600/clk_r))
         dut.rst_n.value = 0
-        await ClockCycles(dut.clk, int(100000/clk_r))
+        await ClockCycles(dut.clk, int(5000/clk_r))
         dut.rst_n.value = 1
