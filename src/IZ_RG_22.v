@@ -8,7 +8,6 @@ module IZ_RG_22(
     output reg spike    // Spike output
 );
 
-    // Función de suma usando solo lógica combinacional
     function [21:0] FAS32;
         input [21:0] h;
         input [21:0] i;
@@ -43,43 +42,27 @@ module IZ_RG_22(
         end
     endfunction
 
-    // Función de multiplicación usando shifts y sumas 
-    function [21:0] FM32_NO_DSP;
+    function [21:0] FM32;
         input [21:0] f;
         input [21:0] g;
         reg [41:0] product;
         reg sign;
-        reg [20:0] multiplicand, multiplier;
-        integer i;
         
         begin
             product = 0;
             sign = 0;
-			multiplicand = 0;
-			multiplier = 0;
-			i = 0;
-            FM32_NO_DSP = 0;
-            
+            FM32 = 0;  // Default return value
             if (f[20:0] == 0 || g[20:0] == 0) begin
-                FM32_NO_DSP = 22'b0;
+                FM32 = 22'b0;
             end
             else begin
                 sign = f[21] ^ g[21];
-                multiplicand = f[20:0];
-                multiplier = g[20:0];
-                
-                // Multiplicación usando shifts y sumas
-                for (i = 0; i < 21; i = i + 1) begin
-                    if (multiplier[i]) begin
-                        product = product + (multiplicand << i);
-                    end
-                end
-                
-                FM32_NO_DSP = {sign, product[38:18]};
+                product = {1'b0, f[20:0]} * {1'b0, g[20:0]};
+                FM32 = {sign, product[38:18]};
+                //FM32 = {sign, product[30:0]}; 
             end
         end
     endfunction
-
 	
 	 reg [21:0] U;
     reg [21:0] V;
@@ -112,15 +95,14 @@ module IZ_RG_22(
 
     // Valores iniciales U
     parameter  VAL_U20 = 22'h20851E; // ~0.2*-.65 
-    parameter  VAL_U25 = 22'h20A666; // 0.25*-.65
-
-    parameter [21:0] BIAS = 22'h0006C2;  // 0.0066
+    parameter  VAL_U25 = 22'h20A666; // 0.25*-.65 
+    parameter [21:0] BIAS = 22'h0006C2; 
 
     reg [21:0] v_old, u_old;
     reg [21:0] dv_term1, dv_term2, dv_term3, dv_term4, dv_term5, dv_term6, dv_term7, dv_term8, dv;
     reg [21:0] du_term1, du_term2, du_term3, du_term4, du;
-    reg [21:0] a, b, c, d; 
-    reg [21:0] I_out;
+    reg [21:0] a, b, c, d;
+    reg [21:0] I_out; 
 
     localparam UPDATE = 2'b00;
     localparam CHECK = 2'b01;
@@ -130,7 +112,7 @@ module IZ_RG_22(
 
     always @(posedge clk or posedge rst) begin
         if (rst) begin
-            a <= 0;
+            a <= 0;  // Maintain current value by default
             b <= 0;
             c <= 0;
             d <= 0;
@@ -156,6 +138,7 @@ module IZ_RG_22(
             du = 0;
             V_out <= 8'hD3;
             U_out <= 8'h8F;
+            
             
             STATE <= SELECT_N; 
         end
@@ -195,23 +178,22 @@ module IZ_RG_22(
                     STATE <= UPDATE;
                 end
                 UPDATE: begin
-                    // Usando la función sin DSP
                     I_out = FAS32(BIAS, {1'b0, I, 13'b0});
-                    dv_term1 = FM32_NO_DSP(V, V);
+                    dv_term1 = FM32(V, V);
                     dv_term2 = {dv_term1[21],(dv_term1[20:0]<<2)};
                     dv_term3 = FAS32({V[21],(V[20:0]<<2)}, V);
-                    dv_term4 = FM32_NO_DSP(ZERO_3157, U);
+                    dv_term4 = FM32(ZERO_3157, U);
                     dv_term5 = FAS32(dv_term2, dv_term3);
                     dv_term6 = FAS32(ONE_3947, dv_term4);
                     dv_term7 = FAS32(dv_term5, dv_term6);
                     dv_term8 = FAS32(dv_term7, I_out);
-                    dv = FM32_NO_DSP(TAU, dv_term8);
+                    dv = FM32(TAU, dv_term8);
 
-                    du_term1 = FM32_NO_DSP(b,V);
+                    du_term1 = FM32(b,V);
                     du_term2 = FAS32(ZERO_0166, U);
                     du_term3 = FAS32(du_term1, {~(du_term2[21]),du_term2[20:0]});
-                    du_term4 = FM32_NO_DSP(a, du_term3);
-                    du = FM32_NO_DSP(TAU, du_term4);
+                    du_term4 = FM32(a, du_term3);
+                    du = FM32(TAU, du_term4);
 
                     v_old <= FAS32(V,dv);
                     u_old <= FAS32(U,du);
@@ -219,23 +201,22 @@ module IZ_RG_22(
                 end
 
                 CHECK: begin
-                    V <= v_old;
+                    V_out <= {V[21], V[17:11]};
+                    U_out <= {U[21], U[17:11]};
                     if (V[21] == 0 && V[20:0] >= VTH[20:0]) begin
                         V <= c;
                         v_old <= c;
                         U <= FAS32(U, d);
                         u_old <= FAS32(U, d);
                         spike <= 1'b1;
-
-                        V_out <= {V[21], V[17:11]};
-                        U_out <= {U[21], U[17:11]};
+                      
                     end
                     else begin
+								V <= v_old;
                         spike <= 1'b0;
                         U <= u_old;
                         STATE <= UPDATE;
-                        V_out <= {V[21], V[17:11]};
-                        U_out <= {U[21], U[17:11]};
+
                     end
                 end
             endcase
